@@ -21,8 +21,11 @@ const Login = () => {
       // Call UserService to authenticate user
       const response = await UserService.userLogin(formData);
       // Handle successful login
-      if(response.status===200){
+       if(response.status===200){
         console.log('Login successful:', response.data);
+        const res=response.data;
+        sessionStorage.setItem("userId",res.userId);
+        navigate("/dashboard", {state:res});
       }
       
     } catch (error) {
